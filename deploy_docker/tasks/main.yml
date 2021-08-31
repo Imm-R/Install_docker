@@ -1,0 +1,25 @@
+---
+# tasks file for deploy_docker
+- name: Install Yum Utils
+  yum: name=yum-utils
+
+- name: Add Repository for docker ce
+  yum_repository:
+    name: "{{ docker_package }}"
+    description: Docker Repo
+    baseurl: "{{ docker_repo }}"
+    enabled: yes
+    gpgcheck: no
+
+- name: Install Docker
+  yum:
+    name: "{{ docker_package }}"
+    state: present
+    update_cache: yes
+
+- name: Start docker
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+

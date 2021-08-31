@@ -1,0 +1,5 @@
+---
+# defaults file for deploy_docker
+docker_edition: 'ce'
+docker_package: "docker-{{ docker_edition }}"
+docker_repo: https://download.docker.com/linux/centos/docker-ce.repo
